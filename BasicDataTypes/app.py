@@ -9,6 +9,9 @@ typeInteger = 10
 typeInteger = typeInteger + 1
 print(typeInteger)
 
+typeInteger += 1
+print(typeInteger)
+
 # Float
 typeFloat = 10.5
 
@@ -28,5 +31,6 @@ typeDictionary = {"name": "Vladislav", "age": 15, "hobby": "programming"}
 # Set
 typeSet = {1, 2, 3, 4, 5}
 typeSet.add(6)
+
 
 
