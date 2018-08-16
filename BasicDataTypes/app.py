@@ -34,3 +34,21 @@ typeSet.add(6)
 
 
 
+# Type Conversion
+# String to Integer
+stringToInteger = "10"
+stringToInteger = int(stringToInteger)
+print(stringToInteger)
+print(type(stringToInteger))
+
+# Integer to String
+integerToString = 10
+integerToString = str(integerToString)
+print(integerToString)
+print(type(integerToString))
+
+# Integer to Float
+integerToFloat = 10
+integerToFloat = float(integerToFloat)
+print(integerToFloat)
+print(type(integerToFloat))
