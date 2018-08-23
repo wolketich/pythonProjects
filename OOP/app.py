@@ -1,4 +1,10 @@
-# Create a new class called Human
+# Create a Dog class
 
-class Human:
-    pass
+class Dog:
+    def __init__(self, name):
+        self.name = name
+
+# Creating an Object
+Bobik = Dog('Bobik')
+
+print('Dog name is {}'.format(Bobik.name))
