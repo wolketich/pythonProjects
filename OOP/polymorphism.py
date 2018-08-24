@@ -1,36 +1,28 @@
-# Polymorphism allows child classes to completely override methods defined in parent class
+# Define a parent class called Animal
+class Animal:
+	def __init__(self, name):
+		self.name = name
 
-class Bird:
+	def speak(self):
+		raise NotImplementedError("Subclass must implement abstract method")
 
-	def intro(self):
-		print("There are many types of birds.")
+# Define two child classes that inherit from Animal
+class Dog(Animal):
+	def speak(self):
+		return "Woof!"
 
-	def flight(self):
-		print("Most of the birds can fly but some cannot.")
+class Cat(Animal):
+	def speak(self):
+		return "Meow!"
 
-class sparrow(Bird):
+# Define a function that takes an Animal object and calls its speak method
+def animal_speak(animal):
+	print(animal.speak())
 
-    # Override
-	def flight(self):
-		print("Sparrows can fly.")
+# Create instances of the Dog and Cat classes
+my_dog = Dog("Bobik")
+my_cat = Cat("Rijik")
 
-class ostrich(Bird):
-
-    # Override
-	def flight(self):
-		print("Ostriches cannot fly.")
-
-# Create objects
-obj_bird = Bird()
-obj_spr = sparrow()
-obj_ost = ostrich()
-
-# Using same methods, but getting different results
-obj_bird.intro()
-obj_bird.flight()
-
-obj_spr.intro()
-obj_spr.flight()
-
-obj_ost.intro()
-obj_ost.flight()
+# Call the animal_speak function with the Dog and Cat instances
+animal_speak(my_dog) # Output: "Woof!"
+animal_speak(my_cat) # Output: "Meow!"
