@@ -21,12 +21,12 @@ if not text_path:
 
 pdf_obj = open(pdf_path, 'rb')
 pdf_read = PyPDF2.PdfReader(pdf_obj)
-num_pages = pdf_read.numPages
+num_pages = len(pdf_read.pages)
 
 for i in range(num_pages):
-    page_obj = pdf_read.getPage(i)
+    page_obj = pdf_read.pages[i]
     with open(text_path, 'a+') as f:
-        f.write(page_obj.extractText())
-    print(page_obj.extractText())
+        f.write(page_obj.extract_text())
+    # print(page_obj.extract_text())
 
 pdf_obj.close()
