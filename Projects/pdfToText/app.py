@@ -20,7 +20,7 @@ if not text_path:
         os.path.normpath(pdf_path)).replace(".pdf", "") + ".txt")
 
 pdf_obj = open(pdf_path, 'rb')
-pdf_read = PyPDF2.PdfFileReader(pdf_obj)
+pdf_read = PyPDF2.PdfReader(pdf_obj)
 num_pages = pdf_read.numPages
 
 for i in range(num_pages):
