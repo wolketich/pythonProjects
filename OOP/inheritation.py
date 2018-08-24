@@ -1,44 +1,26 @@
-# Parent class
-class Person(object):
+# Define the superclass Animal
+class Animal:
+    def __init__(self, name):
+        self.name = name
 
-	# __init__ is known as the constructor
-	def __init__(self, name, idnumber):
-		self.name = name
-		self.idnumber = idnumber
+    def speak(self):
+        print("I am an animal")
 
-	def display(self):
-		print(self.name)
-		print(self.idnumber)
-		
-	def details(self):
-		print("My name is {}".format(self.name))
-		print("ID Number: {}".format(self.idnumber))
-	
-# Child class, same as father class, plus a new method and 2 new field.
-class Employee(Person):
-	def __init__(self, name, idnumber, salary, post):
-		self.salary = salary
-		self.post = post
+# Define the subclass Dog, which has a different speak method
+class Dog(Animal):
 
-		# invoking the __init__ of the parent class
-		Person.__init__(self, name, idnumber)
-		
-	def details(self):
-		print("My name is {}".format(self.name))
-		print("IdNumber: {}".format(self.idnumber))
-		print("Post: {}".format(self.post))
+    
+    def __init__(self, name):
+        super().__init__(name)
 
-# Create a parent object
+    def speak(self):
+        print("Woof!")
 
-Vlad = Person('Vladislav', 123456)
+# Create an instance of the superclass
+animal = Animal("Generic animal")
+animal.speak()  # Output: "I am an animal"
 
-# Create a child object
-Andrei = Employee(name='Andrei', idnumber=654321, salary=35000, post='Senior Developer')
-
-# Vlad has only 2 methods, display and details (Parent class)
-Vlad.display()
-Vlad.details()
-
-# Andrei has same methods as Vlad, but method Details is updated to support more fields.
-Andrei.display()
-Andrei.details()
+# Create an instance of the subclass
+dog = Dog("Bobik")
+dog.speak()  # Output: "Woof!"
+print(dog.name)  # Output: "Fido"
