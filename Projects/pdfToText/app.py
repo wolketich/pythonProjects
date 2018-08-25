@@ -2,31 +2,52 @@ import os
 import PyPDF2
 
 
-if not os.path.isdir("temp"):
-    os.mkdir("temp")
+def create_directory(directory):
+    """Create a directory if it doesn't exist."""
+    if not os.path.isdir(directory):
+        os.mkdir(directory)
 
-text_path = ""
-pdf_path = ""
 
-pdf_path = input("Enter the path of the pdf file:")
-text_path = input(
-    "Enter output text file path: (optional, default: temp/<pdf_name>.txt)")
+def get_default_text_path(pdf_path, base_dir):
+    """Generate the default text file path."""
+    pdf_name = os.path.basename(os.path.normpath(pdf_path))
+    text_file_name = pdf_name.replace(".pdf", ".txt")
+    return os.path.join(base_dir, text_file_name)
 
-base_dir = os.path.realpath("temp")
-print(base_dir)
 
-if not text_path:
-    text_path = os.path.join(base_dir, os.path.basename(
-        os.path.normpath(pdf_path)).replace(".pdf", "") + ".txt")
+def extract_text_from_pdf(pdf_path, text_path):
+    """Extract text from the PDF and write to a file."""
+    # Using 'with' ensures files are closed properly after operations are performed.
+    with open(pdf_path, 'rb') as pdf_obj, open(text_path, 'w') as text_file:
+        pdf_reader = PyPDF2.PdfReader(pdf_obj)
 
-pdf_obj = open(pdf_path, 'rb')
-pdf_read = PyPDF2.PdfReader(pdf_obj)
-num_pages = len(pdf_read.pages)
+        for page in pdf_reader.pages:
+            text = page.extract_text()
+            text_file.write(text)
 
-for i in range(num_pages):
-    page_obj = pdf_read.pages[i]
-    with open(text_path, 'a+') as f:
-        f.write(page_obj.extract_text())
-    # print(page_obj.extract_text())
+        # No need to close the files explicitly as 'with' takes care of that.
 
-pdf_obj.close()
+
+def main():
+    # Create a temp directory for storing text files
+    base_dir = "default"
+    create_directory(base_dir)
+
+    # Get user input for file paths
+    pdf_path = input("Enter the path of the pdf file: ")
+    text_path = input(
+        "Enter output text file path (optional, leave blank for default): ")
+
+    # If the user doesn't specify a text file path, use the default location.
+    if not text_path:
+        text_path = get_default_text_path(pdf_path, base_dir)
+
+    try:
+        extract_text_from_pdf(pdf_path, text_path)
+        print(f"Text extracted and saved to {text_path}")
+    except Exception as e:
+        print(f"An error occurred: {e}")
+
+
+if __name__ == "__main__":
+    main()
