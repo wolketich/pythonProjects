@@ -43,7 +43,7 @@ def convert_images_to_pdf(file_path, output_path="output.pdf"):
 
 def main():
     if len(sys.argv) < 2:
-        print("Usage: python script.py <path_to_image_or_directory>")
+        print("Usage: python app.py <path_to_image_or_directory>")
         sys.exit(1)
 
     file_path = sys.argv[1]
