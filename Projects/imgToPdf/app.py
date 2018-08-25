@@ -1,35 +1,18 @@
 import sys
-import img2pdf
 import os
+import img2pdf
 
-# Get the file path from the command line argument
-filepath = sys.argv[1]
-
-# Check if the file path is a directory
-if os.path.isdir(filepath):
-    with open("output.pdf", "wb") as f:
-        imgs = []
-        # Loop through all files in the directory
-        for fname in os.listdir(filepath):
-            # Check if the file is a jpg image
-            if not fname.endswith(".jpg"):
-                continue
-            path = os.path.join(filepath, fname)
-            # Check if the file is a directory
-            if os.path.isdir(path):
-                continue
-            imgs.append(path)
-        # Convert all images to pdf and write to file
-        f.write(img2pdf.convert(imgs))
-
-# Check if the file path is a file
-elif os.path.isfile(filepath):
-    # Check if the file is a jpg image
-    if filepath.endswith(".jpg"):
+def convert_images_to_pdf(file_path):
+    if os.path.isdir(file_path):
+        images = [os.path.join(file_path, fname) for fname in os.listdir(file_path) if fname.endswith(".jpg") and not os.path.isdir(os.path.join(file_path, fname))]
         with open("output.pdf", "wb") as f:
-            # Convert the image to pdf and write to file
-            f.write(img2pdf.convert(filepath))
+            f.write(img2pdf.convert(images))
+    elif os.path.isfile(file_path) and file_path.endswith(".jpg"):
+        with open("output.pdf", "wb") as f:
+            f.write(img2pdf.convert(file_path))
+    else:
+        print("Please input a valid file or directory path.")
 
-# Print an error message if the file path is not a file or directory
-else:
-    print("please input file or dir")
+if __name__ == "__main__":
+    file_path = sys.argv[1]
+    convert_images_to_pdf(file_path)
