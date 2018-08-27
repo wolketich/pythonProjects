@@ -1,22 +1,51 @@
-#Program to fetch the http status code give the url/api
-from urllib.request import urlopen
-from urllib.error import URLError, HTTPError
+import requests  # Using requests for improved performance and simplicity
 import emoji
 
-#Taking input url from user
-requestURL = input("Enter the URL to be invoked: ")
+def get_http_status(url):
+    """
+    Fetch the HTTP status code for the given URL/API and print the corresponding message and emoji.
 
-#Gets the response from URL and prints the status code, corresponding emoji and message accordingly
-try:
-    response = urlopen(requestURL)
-    #In case of success, prints success status code and thumbs_up emoji
-    print('Status code : ' + str(response.code) + ' ' + emoji.emojize(':thumbs_up:'))
-    print('Message : ' + 'Request succeeded. Request returned message - ' + response.reason)
-except HTTPError as e:
-    #In case of request failure, prints HTTP error status code and thumbs_down emoji
-    print('Status : ' + str(e.code) + ' ' + emoji.emojize(':thumbs_down:'))
-    print('Message : Request failed. Request returned reason - ' + e.reason)
-except URLError as e:
-    #In case of bad URL or connection failure, prints Win Error and thumbs_down emoji
-    print('Status :',  str(e.reason).split(']')[0].replace('[','') +  ' ' + emoji.emojize(':thumbs_down:'))
-    print('Message : '+ str(e.reason).split(']')[1])
+    :param url: The URL to be checked.
+    """
+    try:
+        # Send a request to the URL
+        response = requests.get(url)
+        
+        # Check if the request was successful
+        if response.ok:
+            print(f'Status code: {response.status_code} {emoji.emojize(":thumbs_up:")}')
+            print(f'Message: Request succeeded. Request returned message - {response.reason}')
+        else:
+            # The request returned an unsuccessful status code
+            print(f'Status: {response.status_code} {emoji.emojize(":thumbs_down:")}')
+            print(f'Message: Request failed. Server returned reason - {response.reason}')
+
+    except requests.ConnectionError:
+        # Handle connection errors
+        print(f'Status: Connection error {emoji.emojize(":thumbs_down:")}')
+        print('Message: Failed to establish a connection to the server.')
+    except requests.Timeout:
+        # Handle timeout errors
+        print(f'Status: Timeout {emoji.emojize(":thumbs_down:")}')
+        print('Message: The request timed out.')
+    except requests.RequestException as e:
+        # Handle other types of request errors
+        print(f'Status: Error {emoji.emojize(":thumbs_down:")}')
+        print(f'Message: {str(e)}')
+    except Exception as e:
+        # Handle any other exception that wasn't caught above
+        print(f'An unexpected error occurred: {str(e)} {emoji.emojize(":thumbs_down:")}')
+
+def main():
+    # Request the URL input from the user
+    request_url = input("Enter the URL to be invoked: ")
+
+    # Validate URL format
+    if not request_url.startswith(('http://', 'https://')):
+        print("Invalid URL. Please include http:// or https://")
+    else:
+        # Invoke the function to get the HTTP status
+        get_http_status(request_url)
+
+if __name__ == "__main__":
+    main()
