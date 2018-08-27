@@ -1,4 +1,4 @@
-import requests  # Using requests for improved performance and simplicity
+import requests
 import emoji
 
 def get_http_status(url):
