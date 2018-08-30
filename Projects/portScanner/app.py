@@ -2,13 +2,13 @@ from socket import *
 import time
 
 def port_scanner(target):
-    t_IP = gethostbyname(target)
-    print ('Starting scan on host: ', t_IP)
+    target_IP = gethostbyname(target)
+    print ('Starting scan on host: ', target_IP)
 
     for i in range(50, 500):
         s = socket(AF_INET, SOCK_STREAM)
 
-        conn = s.connect_ex((t_IP, i))
+        conn = s.connect_ex((target_IP, i))
         if(conn == 0) :
             print ('Port %d: OPEN' % (i,))
         s.close()   
