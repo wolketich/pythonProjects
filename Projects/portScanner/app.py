@@ -23,7 +23,7 @@ def scan_port(target, port):
     except:
         return None
 
-def port_scanner(target):
+def port_scanner(target, startPort=1, endPort=1024):
     """
     Scan the target host for open ports.
 
@@ -38,7 +38,7 @@ def port_scanner(target):
     # We'll use threading to speed up the scanning process
     with concurrent.futures.ThreadPoolExecutor(max_workers=MAX_THREADS) as executor:
         # Start the scan operations and mark each future with its port
-        future_to_port = {executor.submit(scan_port, target_IP, port): port for port in range(50, 500)}
+        future_to_port = {executor.submit(scan_port, target_IP, port): port for port in range(startPort, endPort)}
         for future in concurrent.futures.as_completed(future_to_port):
             port = future_to_port[future]
             if future.result():
@@ -56,7 +56,7 @@ def main():
     target = input('Enter the host to be scanned: ')
     if target:
         startTime = time.time()
-        port_scanner(target)
+        port_scanner(target, startPort=1, endPort=1024)
         print(f'Time taken: {time.time() - startTime:.2f} seconds')
     else:
         print("Invalid target host. Please try again.")
