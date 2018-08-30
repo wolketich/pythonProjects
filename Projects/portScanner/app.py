@@ -1,9 +1,5 @@
 from socket import *
 import time
-startTime = time.time()
-
-from socket import *
-import time
 
 def port_scanner(target):
     t_IP = gethostbyname(target)
