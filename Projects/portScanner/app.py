@@ -5,6 +5,21 @@ import concurrent.futures
 # Constant for the number of maximum threads to use in the port scanner
 MAX_THREADS = 100
 
+def get_service(port):
+    """
+    Get the service name for the given port number.
+
+    :param port: Integer port number
+    :return: String service name
+    """
+    try:
+        # Get the service name
+        service = socket.getservbyport(port)
+        return service
+    except:
+        # No service found for the port
+        return None
+
 def scan_port(target, port):
     """
     Try connecting to the specified port on the target host.
@@ -49,6 +64,7 @@ def port_scanner(target, startPort=1, endPort=1024):
         open_ports.sort()
         for port in open_ports:
             print(f'Port {port}: OPEN')
+            print(f' - Service: {get_service(port)}')
     else:
         print("No open ports found.")
 
