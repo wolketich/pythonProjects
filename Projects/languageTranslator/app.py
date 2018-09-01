@@ -3,7 +3,7 @@ from googletrans import Translator
 translator = Translator()
 
 language = {
-            "ro": "Romanian
+            "ro": "Romanian",
             "ua": "Ukrainian",
             "ru": "Russian",
             "en": "English",
