@@ -52,7 +52,7 @@ while True:  # starting translation loop
         break
 
     # translating method from googletrans
-    translated = translator.translate(string, dest=user_code)
+    translated = translator.translate(text=string, dest=user_code)
 
     # printing translation
     print(f"\n{language[user_code]} translation: {translated.text}")
