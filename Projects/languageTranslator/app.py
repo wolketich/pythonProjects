@@ -41,7 +41,7 @@ while allow:  # checking if language code is valid
                 print(f"You have selected {language[lan_code]}")
                 allow = False
         if allow:
-            print("It's not a valid language code!")
+            print("It is not a valid language code!")
 
 while True:  # starting translation loop
     string = input(
