@@ -11,4 +11,5 @@ links = []
 for link in soup.find_all("a"):
     links.append(link.get("href"))
 
-print(links[:10])
+with open("myLinks.txt", 'w') as saved:
+    print(links[:10], file=saved)
