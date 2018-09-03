@@ -1,9 +1,4 @@
 # Algorithm: Selection Sort
-# Big O Complexity:   
-# Best Case Scenario: 
-# Worst Case Scenario: 
-# Average Case Scenario: 
-# Space Complexity: 
 
 # Import the random module
 import random
