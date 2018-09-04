@@ -1,5 +1,6 @@
 # Algorithm: Insertion Sort
 
+
 # Import the random module
 import random
 
