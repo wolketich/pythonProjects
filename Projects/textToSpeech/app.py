@@ -1,23 +1,27 @@
-import speech_recognition
+import speech_recognition as sr
 
-def record_voice():
-	microphone = speech_recognition.Recognizer()	
+# Initialize the recognizer
+recognizer = sr.Recognizer()
 
-	with speech_recognition.Microphone() as live_phone:
-		microphone.adjust_for_ambient_noise(live_phone)
+# Load an audio file (replace 'your_audio_file.wav' with your file path)
+audio_file = "your_audio_file.wav"
 
-		print("I'm trying to hear you: ")
-		audio = microphone.listen(live_phone)
-		try:
-			phrase = microphone.recognize_google(audio, language='en')
-			return phrase
-		except speech_recognition.UnkownValueError:
-			return "I didn't understand what you said"
+# Function to transcribe audio
+def transcribe_audio(file_path):
+    with sr.AudioFile(file_path) as source:
+        # Record the audio file as an audio data object
+        audio_data = recognizer.record(source)
 
-if __name__ == '__main__':
-	phrase = record_voice()
+        try:
+            # Recognize the content from the audio input
+            text = recognizer.recognize_google(audio_data)
+            print("Transcription: " + text)
 
-	with open('you_said_this.txt','w') as file:
-		file.write(phrase) 
+        except sr.UnknownValueError:
+            print("Google Speech Recognition could not understand the audio")
 
-	print('the last sentence you spoke was saved in you_said_this.txt') 
+        except sr.RequestError as e:
+            print(f"Could not request results from Google Speech Recognition service; {e}")
+
+# Transcribe the specified audio file
+transcribe_audio(audio_file)
