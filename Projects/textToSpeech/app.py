@@ -17,7 +17,6 @@ def transcribe_audio(file_path):
             text = recognizer.recognize_google(audio_data)
             print("Transcription: " + text)
 
-
         except sr.UnknownValueError:
             print("Google Speech Recognition could not understand the audio")
 
