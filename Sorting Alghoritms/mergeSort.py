@@ -56,6 +56,5 @@ def main():
     print(f"Sorted array: {sorted_array}")
 
 
-
 if __name__ == "__main__":
     main()
