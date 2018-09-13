@@ -55,6 +55,5 @@ def main():
     sorted_array = mergeSort(arr)
     print(f"Sorted array: {sorted_array}")
 
-
 if __name__ == "__main__":
     main()
