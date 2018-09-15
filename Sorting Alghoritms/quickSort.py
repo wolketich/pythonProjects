@@ -7,27 +7,24 @@ def quickSort(arr):
     """
     Sort the given array using the quick sort algorithm.
     """
-    # If the array is empty or contains only one element, return the array
-    if len(arr) <= 1:
+    # If the length of the array is less than 1, return the array
+    if len(arr) < 1:
         return arr
-    
-    # Choose a pivot element
-    pivot = arr[random.randint(0, len(arr) - 1)]
 
-    # Partition the array into two subarrays
-    left, right = [], []
-    for i in range(len(arr)):
-        if arr[i] < pivot:
-            left.append(arr[i])
-        else:
-            right.append(arr[i])
-    
-    # Sort the subarrays
-    left = quickSort(left)
-    right = quickSort(right)
+    # Get the pivot element
+    pivot = arr[len(arr) // 2]
+
+    # Get the elements less than the pivot
+    left = [x for x in arr if x < pivot]
+
+    # Get the elements equal to the pivot
+    middle = [x for x in arr if x == pivot]
+
+    # Get the elements greater than the pivot
+    right = [x for x in arr if x > pivot]
 
     # Return the sorted array
-    return left + right
+    return quickSort(left) + middle + quickSort(right)
 
 
 def main():
@@ -37,8 +34,8 @@ def main():
     print(f"Unsorted array: {arr}")
 
     # Sort the array and print the result
-    quickSort(arr)
-    print(f"Sorted array: {arr}")
+    sorted_arr = quickSort(arr)
+    print(f"Sorted array: {sorted_arr}")
 
 if __name__ == "__main__":
     main()
