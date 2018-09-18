@@ -55,7 +55,8 @@ def main():
     # Sort the array and print the result
     sorted_arr = heapSort(arr)
     print(f"Sorted array: {sorted_arr}")
-    
+
+
 
 if __name__ == "__main__":
     main()
