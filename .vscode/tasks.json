@@ -2,9 +2,15 @@
 	"version": "2.0.0",
 	"inputs": [
 	  {
-		"id": "commitDate",
+		"id": "commitDay",
 		"type": "promptString",
-		"description": "Enter the commit date (DD/MM/YYYY):",
+		"description": "Enter the commit day (DD):",
+		"default": ""
+	  },
+	  {
+		"id": "commitMonth",
+		"type": "promptString",
+		"description": "Enter the commit month (MM):",
 		"default": ""
 	  }
 	],
@@ -14,7 +20,7 @@
 		"label": "Commit",
 		"command": "./gd", // just the script name here
 		"args": [
-		  "${input:commitDate}" // here we reference the input
+		  "${input:commitDay}/${input:commitMonth}/2018" // here we reference the input
 		],
 		"problemMatcher": [],
 		"group": {

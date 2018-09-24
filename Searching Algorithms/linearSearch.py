@@ -20,6 +20,7 @@ random_index = random.randint(0, len(arr) - 1)
 target = arr[random_index]
 
 print('Array:', arr)
+
 print('Target element:', target)
 
 
