@@ -16,3 +16,7 @@ def binary_search(arr, target):
             right = mid - 1
     
     return -1
+
+# Test case
+#Random array
+arr = [1, 3, 5, 7, 9, 11, 13, 15]
