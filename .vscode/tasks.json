@@ -11,7 +11,7 @@
 		"id": "commitMonth",
 		"type": "promptString",
 		"description": "Enter the commit month (MM):",
-		"default": ""
+		"default": "09"
 	  }
 	],
 	"tasks": [
