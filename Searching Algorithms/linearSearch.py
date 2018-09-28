@@ -1,3 +1,5 @@
+import random
+
 def linear_search(arr, target):
     """
     Searches for the target element in the given array using linear search algorithm.
@@ -9,7 +11,14 @@ def linear_search(arr, target):
     return -1
 
 # Test case
-arr = [1, 2, 3, 4, 5]
-target = 3
+#Random array
+arr = [1, 3, 5, 7, 9, 11, 13, 15]
+
+# Target element (random item from the array)
+random_index = random.randint(0, len(arr) - 1)
+target = arr[random_index]
+
+print('Array:', arr)
+print('Target element:', target)
 
 print('Index of the target element:', linear_search(arr, target))
