@@ -25,3 +25,5 @@ target = 11
 
 print('Array:', arr)
 print('Target element:', target)
+
+print('Index of the target element:', binary_search(arr, target))
