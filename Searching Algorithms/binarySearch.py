@@ -21,7 +21,7 @@ def binary_search(arr, target):
 #Random array
 arr = [1, 3, 5, 7, 9, 11, 13, 15]
 
-target = 11
+target = 117
 
 print('Array:', arr)
 print('Target element:', target)
