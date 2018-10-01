@@ -1,5 +1,5 @@
 # Define the depth first search function
-def dfs(graph, start, visited=None):
+def depth_first_search(graph, start, visited=None):
     if visited is None:
         visited = set()
     visited.add(start)
