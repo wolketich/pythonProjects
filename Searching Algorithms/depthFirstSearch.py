@@ -5,7 +5,7 @@ def depth_first_search(graph, start, visited=None):
     visited.add(start)
     print(start)
     for next_node in graph[start] - visited:
-        dfs(graph, next_node, visited)
+        depth_first_search(graph, next_node, visited)
     return visited
 
 def generate_graph():
@@ -22,4 +22,4 @@ def print_graph(graph):
     for node in graph:
         print(node, graph[node])
 
-print_graph(generate_graph())
+
