@@ -17,3 +17,7 @@ def generate_graph():
     graph['E'] = set(['B', 'F'])
     graph['F'] = set(['C', 'E'])
     return graph
+
+def print_graph(graph):
+    for node in graph:
+        print(node, graph[node])
