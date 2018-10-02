@@ -21,3 +21,5 @@ def generate_graph():
 def print_graph(graph):
     for node in graph:
         print(node, graph[node])
+
+print_graph(generate_graph())
