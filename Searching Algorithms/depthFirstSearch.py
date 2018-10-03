@@ -22,4 +22,4 @@ def print_graph(graph):
     for node in graph:
         print(node, graph[node])
 
-
+print(depth_first_search(generate_graph(), 'A'))
