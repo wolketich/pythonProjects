@@ -1,25 +1,26 @@
-# Define the depth first search function
-def depth_first_search(graph, start, visited=None):
+def depth_first_search(graph, start, end, visited=None):
     if visited is None:
         visited = set()
     visited.add(start)
-    print(start)
-    for next_node in graph[start] - visited:
-        depth_first_search(graph, next_node, visited)
-    return visited
+    if start == end:
+        return True
+    for neighbor in graph[start]:
+        if neighbor not in visited:
+            if depth_first_search(graph, neighbor, end, visited):
+                return True
+    return False
 
-def generate_graph():
-    graph = {}
-    graph['A'] = set(['B', 'C'])
-    graph['B'] = set(['A', 'D', 'E'])
-    graph['C'] = set(['A', 'F'])
-    graph['D'] = set(['B'])
-    graph['E'] = set(['B', 'F'])
-    graph['F'] = set(['C', 'E'])
-    return graph
+# Example usage
+graph = {
+    'A': ['B', 'C'],
+    'B': ['D', 'E'],
+    'C': ['F'],
+    'D': [],
+    'E': ['F'],
+    'F': []
+}
 
-def print_graph(graph):
-    for node in graph:
-        print(node, graph[node])
-
-print(depth_first_search(generate_graph(), 'A'))
+print(depth_first_search(graph, 'A', 'F'))  # Output: True
+print(depth_first_search(graph, 'B', 'C'))  # Output: False
+print(depth_first_search(graph, 'D', 'E'))  # Output: False
+print(depth_first_search(graph, 'A', 'Z'))  # Output: False
