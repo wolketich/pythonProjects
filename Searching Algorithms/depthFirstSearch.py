@@ -22,5 +22,4 @@ graph = {
 
 print(depth_first_search(graph, 'A', 'F'))  # Output: True
 print(depth_first_search(graph, 'B', 'C'))  # Output: False
-print(depth_first_search(graph, 'D', 'E'))  # Output: False
-print(depth_first_search(graph, 'A', 'Z'))  # Output: False
+
