@@ -47,5 +47,7 @@ def main():
         # Invoke the function to get the HTTP status
         get_http_status(request_url)
 
+
+
 if __name__ == "__main__":
     main()
