@@ -2,11 +2,6 @@ import requests
 import emoji
 
 def get_http_status(url):
-    """
-    Fetch the HTTP status code for the given URL/API and print the corresponding message and emoji.
-
-    :param url: The URL to be checked.
-    """
     try:
         # Send a request to the URL
         response = requests.get(url)
