@@ -3,12 +3,7 @@ import os
 import img2pdf
 
 def convert_images_to_pdf(file_path, output_path="output.pdf"):
-    """
-    Convert a single image or all images in a directory to a single PDF.
 
-    :param file_path: Path to the image file or directory containing image files.
-    :param output_path: The desired path for the output PDF.
-    """
     try:
         # List to hold image file paths
         images = []
